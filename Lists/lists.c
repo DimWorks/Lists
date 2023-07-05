@@ -32,6 +32,34 @@ void push_to_head(node* list, int data)
 	}
 }
 
+void push_to_place(node* list, int place, int data)
+{
+	if (place < 1 || place > jump_to_last())
+	{
+		printf("Задана неверная позиция для новго элемента\n");
+	}
+	else if (place == 1)
+	{
+		push_to_head(HEAD, data);
+	}
+	else if (place == jump_to_last())
+	{
+		push_to_end(place, data);
+	}
+	else
+	{
+		node* tmp = NULL;
+		if ((tmp = (node*)malloc(sizeof(node))))	// Выделение памяти под новый элемент
+		{											// Если память удалось выделить
+			
+		}											// 
+		else										// Если не удалось выделить память
+		{											// 
+			printf("Недостаточно памяти!\n");		// Выводим сообщение о проблеме
+		}
+	}
+}
+
 node* push_to_end(node* list, int data)
 {
 	RUS											// Задаём работу с русским языком

@@ -12,6 +12,8 @@ extern int HEAD;
 
 void push_to_head(node* list, int data);
 
+void push_to_place(node* list, int place, int data);
+
 node* push_to_end(node* list, int data);
 
 void print_from_head(node* list);
