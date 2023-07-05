@@ -21,6 +21,9 @@
     <ClCompile Include="lists.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="random.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_lists.h">

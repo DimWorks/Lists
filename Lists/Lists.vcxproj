@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="lists.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="random.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_lists.h" />

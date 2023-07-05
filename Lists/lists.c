@@ -16,6 +16,22 @@ node* jump_to_last(node* list)
 	return list;
 }
 
+void push_to_head(node* list, int data)
+{
+	RUS											// Задаём работу с русским языком
+	node* tmp = NULL;
+	if ((tmp = (node*)malloc(sizeof(node))))	// Выделение памяти под новый элемент
+	{											// Если память удалось выделить
+		tmp->data = data;						// Запись данных в узел списка
+		tmp->next = list;						// Запись указателя на NULL
+		HEAD = tmp;										//
+	}											// 
+	else										// Если не удалось выделить память
+	{											// 
+		printf("Недостаточно памяти!\n");		// Выводим сообщение о проблеме
+	}
+}
+
 node* push_to_end(node* list, int data)
 {
 	RUS											// Задаём работу с русским языком
@@ -39,6 +55,7 @@ node* push_to_end(node* list, int data)
 	{											// 
 		printf("Недостаточно памяти!\n");		// Выводим сообщение о проблеме
 	}
+	//printf("\t%d\t%d\n", list, HEAD);
 	return list;								// Возвращаем адрес текущего узла
 }
 
@@ -56,5 +73,19 @@ void print_from_head(node* list)
 	else
 	{
 		printf("Список пуст!\n");
+	}
+}
+
+void pop_from_head(node* list)
+{
+	if (list == NULL)
+	{
+		printf("Список пуст!\n");
+	}
+	else
+	{
+		node* tmp = list;
+		HEAD = tmp->next;
+		free(tmp);
 	}
 }
