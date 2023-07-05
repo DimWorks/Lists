@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include "my_lists.h"
+
+#define RUS setlocale(LC_ALL, "RU");
+
+int HEAD;
+
+node* jump_to_last(node* list)
+{
+	while ((list->next) != NULL)
+	{
+		list = list->next;
+	}
+	return list;
+}
+
+node* push_to_end(node* list, int data)
+{
+	RUS											// Задаём работу с русским языком
+	node* tmp = NULL;
+	if ((tmp = (node*)malloc(sizeof(node))))	// Выделение памяти под новый элемент
+	{											// Если память удалось выделить
+		tmp->data = data;						// Запись данных в узел списка
+		tmp->next = NULL;						// Запись указателя на NULL
+		if (list != NULL)						// Если это не первый элемент списка
+		{										//
+			list = jump_to_last(list);			// Находим указатель на последний элемент списка
+			list->next = tmp;					// Запись адреса последнего элемента в указатель предпоследнего узла
+		}										//
+		else									// Если это первый элемент списка
+		{										//
+			HEAD = tmp;							// Записываем в глобальную переменную начало списка
+			list = tmp;							// Записываем адрес текущего узла
+		}										//
+	}											// 
+	else										// Если не удалось выделить память
+	{											// 
+		printf("Недостаточно памяти!\n");		// Выводим сообщение о проблеме
+	}
+	return list;								// Возвращаем адрес текущего узла
+}
+
+void print_from_head(node* list)
+{
+	RUS
+	if (list != NULL)
+	{
+		while (list != NULL)
+		{
+			printf("%d ", list->data);
+			list = list->next;
+		}
+	}
+	else
+	{
+		printf("Список пуст!\n");
+	}
+}
