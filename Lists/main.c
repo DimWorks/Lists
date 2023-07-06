@@ -26,6 +26,11 @@ int main()
 	printf("\n");
 	print_from_head(HEAD);
 
+	push_to_place(HEAD, 2, 489);
+
+	printf("\n");
+	print_from_head(HEAD);
+
 	/*for (int i = 0; i < 20; i++)
 	{
 		printf("test: %d\n", pseudorandom());

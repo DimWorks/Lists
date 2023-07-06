@@ -34,7 +34,9 @@ void push_to_head(node* list, int data)
 
 void push_to_place(node* list, int place, int data)
 {
-	if (place < 1 || place > jump_to_last())
+	RUS
+
+	if (place < 1 || place > jump_to_last(list))
 	{
 		printf("Задана неверная позиция для новго элемента\n");
 	}
@@ -42,7 +44,7 @@ void push_to_place(node* list, int place, int data)
 	{
 		push_to_head(HEAD, data);
 	}
-	else if (place == jump_to_last())
+	else if (place == jump_to_last(list))
 	{
 		push_to_end(place, data);
 	}
@@ -51,7 +53,14 @@ void push_to_place(node* list, int place, int data)
 		node* tmp = NULL;
 		if ((tmp = (node*)malloc(sizeof(node))))	// Выделение памяти под новый элемент
 		{											// Если память удалось выделить
-			
+			node* tmp_list = list;					// Создаём вспомогательный указатель на узел
+			tmp->data = data;						// Записываем данные в узел
+			for (int i = 1; i < place - 1; i++)		// Пробегаем по списку до узла предшествующему этому
+			{
+				tmp_list->next = list->next;		// Записываем во вспомогательный указатель адрес следующего узла
+			}
+			tmp->next = tmp_list->next;
+			tmp_list->next = tmp;
 		}											// 
 		else										// Если не удалось выделить память
 		{											// 
@@ -106,6 +115,9 @@ void print_from_head(node* list)
 
 void pop_from_head(node* list)
 {
+	RUS
+
+
 	if (list == NULL)
 	{
 		printf("Список пуст!\n");
