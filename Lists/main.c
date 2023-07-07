@@ -31,6 +31,16 @@ int main()
 	printf("\n");
 	print_from_head(HEAD);
 
+	redact_to_node(HEAD, 5, 345);
+
+	printf("\n");
+	print_from_head(HEAD);
+
+	bubble_sort(HEAD);
+
+	printf("\n");
+	print_from_head(HEAD);
+
 	/*for (int i = 0; i < 20; i++)
 	{
 		printf("test: %d\n", pseudorandom());
