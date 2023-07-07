@@ -185,19 +185,20 @@ void redact_to_node(node* list, int place, int data)
 
 void bubble_sort(node *list)
 {
-	jump_to_last(list);	
-	for (int i = 0; i < END; i++)
+	jump_to_last(list);
+	for (int i = 0; i < END+1; i++)
 	{
 		node* next_node = HEAD;
-		for (int j = 0; j < END - i; j++)
+		for (int j = 0; j < END; j++)
 		{
-			if (list->data > next_node->data)
+			//printf("\n%d <!!!> %d", list->data, next_node->data);
+			if (list->data < next_node->data)
 			{
-				printf("\n%d > %d\n", list->data, next_node->data);
-				int tmp = next_node->data;
-				redact_to_node(HEAD, j, list->data);
-				redact_to_node(HEAD, j+1, tmp);
+				int tmp = list->data;
+				list->data = next_node->data;
+				next_node->data = tmp;
 			}
+			//printf("\t%d <!!!> %d\n", list->data, next_node->data);
 			next_node = next_node->next;
 			
 		}
