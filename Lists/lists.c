@@ -8,6 +8,8 @@
 int HEAD;
 int END;
 
+//---------------------------ПОИСК ПОСЛЕДНЕГО ЭЛЕМЕНТА СПИСКА------------------------------
+
 node* jump_to_last(node* list)
 {
 	END = 0;
@@ -21,8 +23,10 @@ node* jump_to_last(node* list)
 
 //-------------------------------ЗАПИСЬ УЗЛА В СПИСОК---------------------------------------
 
-void push_to_head(node* list, int data)
+void push_to_head(int data)
 {
+	node* list = HEAD;
+
 	RUS											// Задаём работу с русским языком
 	node* tmp = NULL;
 	if ((tmp = (node*)malloc(sizeof(node))))	// Выделение памяти под новый элемент
@@ -47,7 +51,7 @@ void push_to_place(node* list, int place, int data)
 	}
 	else if (place == 1)
 	{
-		push_to_head(HEAD, data);
+		push_to_head(data);
 	}
 	else if (place == jump_to_last(list))
 	{
@@ -103,8 +107,10 @@ node* push_to_end(node* list, int data)
 
 //-----------------------------ВЫВОД СПИСКА В КОНСОЛЬ-----------------------
 
-void print_from_head(node* list)
+void print_from_head()
 {
+	node* list = HEAD;
+
 	RUS
 	if (list != NULL)
 	{
@@ -122,8 +128,10 @@ void print_from_head(node* list)
 
 //------------------------------УДАЛЕНИЕ УЗЛОВ------------------------------
 
-void pop_from_head(node* list)
+void pop_from_head()
 {
+	node* list = HEAD;
+
 	RUS
 
 	if (list == NULL)
@@ -138,9 +146,63 @@ void pop_from_head(node* list)
 	}
 }
 
-void pop_from_end(node* list)
+void pop_from_end()
 {
+	node* list = HEAD;
 
+	RUS
+
+	if (list == NULL)
+	{
+		printf("Список пуст!\n");
+	}
+	else
+	{
+		list = jump_to_last(HEAD);
+		node* prev_node = HEAD;
+		while (prev_node->next != list)
+		{
+			prev_node = prev_node->next;
+		}
+		free(list);
+		prev_node->next = NULL;
+	}	
+}
+
+void pop_from_place(int place)
+{
+	RUS
+
+		if (place < 1 || place > jump_to_last(HEAD))
+		{
+			printf("Задана неверная позиция для новго элемента\n");
+		}
+		else if (place == 1)
+		{
+			pop_from_head();
+		}
+		else if (place == jump_to_last(HEAD))
+		{
+			pop_from_end();
+		}
+		else
+		{
+			node* list = HEAD;
+
+			for (int i = 0; i < place; i++)
+			{
+				list = list->next;
+			}
+			
+			node* prev_node = HEAD;
+			while (prev_node->next != list)
+			{
+				prev_node = prev_node->next;
+			}
+			prev_node->next = list->next;
+			free(list);
+
+		}
 }
 
 //--------------------------РЕДАКТИРОВАНЕ УЗЛОВ------------------------------
@@ -162,12 +224,10 @@ void redact_to_node(node* list, int place, int data)
 		}
 		else if (place == 1)
 		{
-			//redact_to_headd(HEAD, data);
 			list->data = data;
 		}
 		else if (place == END)
 		{
-			//redact_to_end(place, data);
 			list->data = data;
 		}
 		else
@@ -183,25 +243,38 @@ void redact_to_node(node* list, int place, int data)
 
 //----------------------------------СОРТИРОВКА ПУЗЫРЬКОМ-------------------------------------
 
-void bubble_sort(node *list)
+void bubble_sort()
 {
+	node* list = HEAD;
 	jump_to_last(list);
 	for (int i = 0; i < END+1; i++)
 	{
 		node* next_node = HEAD;
 		for (int j = 0; j < END; j++)
 		{
-			//printf("\n%d <!!!> %d", list->data, next_node->data);
 			if (list->data < next_node->data)
 			{
 				int tmp = list->data;
 				list->data = next_node->data;
 				next_node->data = tmp;
 			}
-			//printf("\t%d <!!!> %d\n", list->data, next_node->data);
-			next_node = next_node->next;
-			
+			next_node = next_node->next;			
 		}
 		list = list->next;
+	}
+}
+
+//------------
+
+void clean_sheet()
+{
+	node* list = HEAD;
+	node* tmp = list;
+
+	while (list->next != NULL)
+	{
+		
+		free(list);
+
 	}
 }
