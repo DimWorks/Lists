@@ -14,7 +14,7 @@ extern int HEAD;										//Глобальная переменная, хранящая начало списка
 
 void push_to_head(int data);				//
 
-void push_to_place(node* list, int place, int data);
+void push_to_place(int place, int data);
 
 node* push_to_end(node* list, int data);
 
@@ -30,7 +30,7 @@ void pop_from_place(int place);
 
 //-------------------------------------РЕДАКТИРОВАНИЕ УЗЛА---------------------------------------------
 
-void redact_to_node(node* list, int place, int data);
+void redact_to_node(int place, int data);
 
 //-----------------------------------------СОРТИРОВКА-------------------------------------------------
 

@@ -26,12 +26,12 @@ int main()
 	printf("\n");
 	print_from_head();
 
-	push_to_place(HEAD, 2, 489);
+	push_to_place(2, 489);
 
 	printf("\n");
 	print_from_head();
 
-	redact_to_node(HEAD, 5, 345);
+	redact_to_node(5, 345);
 
 	printf("\n");
 	print_from_head();

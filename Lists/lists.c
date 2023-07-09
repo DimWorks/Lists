@@ -41,8 +41,9 @@ void push_to_head(int data)
 	}
 }
 
-void push_to_place(node* list, int place, int data)
+void push_to_place(int place, int data)
 {
+	node* list = HEAD;
 	RUS
 
 	if (place < 1 || place > jump_to_last(list))			
@@ -207,8 +208,9 @@ void pop_from_place(int place)
 
 //--------------------------ÐÅÄÀÊÒÈÐÎÂÀÍÅ ÓÇËÎÂ------------------------------
 
-void redact_to_node(node* list, int place, int data)
+void redact_to_node(int place, int data)
 {
+	node* list = HEAD;
 	RUS
 
 	if (list == NULL)
@@ -269,12 +271,13 @@ void bubble_sort()
 void clean_sheet()
 {
 	node* list = HEAD;
-	node* tmp = list;
+	node* tmp;
 
 	while (list->next != NULL)
 	{
-		
+		tmp = list->next;
 		free(list);
-
+		list = tmp;
 	}
+	HEAD = NULL;
 }
