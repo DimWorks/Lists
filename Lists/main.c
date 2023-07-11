@@ -51,6 +51,9 @@ int main()
 	printf("\n");
 	print_from_head();
 
+	printf("\n");
+	print_from_end();
+
 	clean_sheet();
 
 	printf("\n");

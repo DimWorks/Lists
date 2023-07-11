@@ -127,6 +127,30 @@ void print_from_head()
 	}
 }
 
+void print_from_end_helper(node* list)
+{
+	if (list != NULL)
+	{
+		print_from_end_helper(list->next);
+		printf("%d ", list->data);
+	}
+}
+
+void print_from_end()
+{
+	RUS
+
+	if (HEAD != NULL)
+	{
+		print_from_end_helper(HEAD);
+	}
+	else
+	{
+		printf("Ñïèñîê ïóñò!");
+	}
+	
+}
+
 //------------------------------ÓÄÀËÅÍÈÅ ÓÇËÎÂ------------------------------
 
 void pop_from_head()
@@ -266,18 +290,12 @@ void bubble_sort()
 	}
 }
 
-//------------
+//----------------------------------ÓÄÀËÅÍÈÅ ÑÏÈÑÊÀ ÈÇ ÏÀÌßÒÈ--------------------------------
 
 void clean_sheet()
 {
-	node* list = HEAD;
-	node* tmp;
-
-	while (list->next != NULL)
+	while (HEAD != 0)
 	{
-		tmp = list->next;
-		free(list);
-		list = tmp;
+		pop_from_head();
 	}
-	HEAD = NULL;
 }
